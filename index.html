@@ -34,19 +34,6 @@
 </head>
 <body>
   <script src="flutter_bootstrap.js" async></script>
- Future<void> scanPlastic() async {
-  final prediction = await js_util.promiseToFuture(
-    js_util.callMethod(
-      js_util.globalThis,
-      'predictFromCamera',
-      [],
-    ),
-  );
-
-  setState(() {
-    result = prediction.toString();
-  });
-}
 
 <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.16.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
@@ -55,3 +42,4 @@
 
 </body>
 </html>
+
