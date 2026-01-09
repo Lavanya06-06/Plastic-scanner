@@ -15,6 +15,16 @@ async function loadModel() {
   await webcam.play();
 }
 
+function showRewardPopup(probability) {
+  alert(
+    "🎉 Congratulations!\n\n" +
+    "This plastic is RECYCLABLE ♻️\n" +
+    `Confidence: ${(probability * 100).toFixed(2)}%\n\n` +
+    "+10 Green Points 🌱"
+  );
+}
+
+
 async function predictFromCamera() {
   await loadModel();
 
@@ -34,6 +44,10 @@ const nonRecyclable = predictions.find(
 const THRESHOLD = 0.80;
 
 if (recyclable && recyclable.probability >= THRESHOLD) {
+   setTimeout(() => {
+    showRewardPopup(recyclable.probability);
+  }, 100); // popup AFTER result renders
+
   return `Recyclable (${(recyclable.probability * 100).toFixed(2)}%)`;
 }
 
@@ -48,3 +62,4 @@ const best = recyclable.probability > nonRecyclable.probability
 return `Uncertain (${(best.probability * 100).toFixed(2)}%)`;
 
 }
+
